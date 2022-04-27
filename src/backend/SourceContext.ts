@@ -1604,8 +1604,8 @@ export class SourceContext {
     /**
      * This method runs the generation for one file.
      *
-     * @param parameters The command line parameters fro ANTLR4.
      * @param javaRuntime The Java runtime binary to use.
+     * @param parameters The command line parameters for ANTLR4.
      * @param spawnOptions The options for spawning Java.
      * @param errorParser The parser to use for ANTLR4 error messages.
      * @param outputDir The directory to find the interpreter data.
