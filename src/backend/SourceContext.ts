@@ -1034,6 +1034,8 @@ export class SourceContext {
             return Promise.resolve([]);
         }
 
+        const javaRuntime = (options.alternativeJava) ? path.resolve(options.alternativeJava) : "java";
+
         const parameters = ["-jar"];
         if (options.alternativeJar) {
             parameters.push(options.alternativeJar);
@@ -1086,7 +1088,7 @@ export class SourceContext {
             fileList.push(dependency.fileName);
 
             const actualParameters = [...parameters, dependency.fileName];
-            const result = await this.doGeneration(actualParameters, spawnOptions, errorParser, options.outputDir);
+            const result = await this.doGeneration(javaRuntime, actualParameters, spawnOptions, errorParser, options.outputDir);
             if (result.length > 0) {
                 message += "\n" + result;
             }
@@ -1603,16 +1605,17 @@ export class SourceContext {
      * This method runs the generation for one file.
      *
      * @param parameters The command line parameters fro ANTLR4.
+     * @param javaRuntime The Java runtime binary to use.
      * @param spawnOptions The options for spawning Java.
      * @param errorParser The parser to use for ANTLR4 error messages.
      * @param outputDir The directory to find the interpreter data.
      *
      * @returns A string containing the error for non-grammar problems (process or java issues) otherwise empty.
      */
-    private doGeneration(parameters: string[], spawnOptions: object, errorParser: ErrorParser,
+    private doGeneration(javaRuntime: string, parameters: string[], spawnOptions: object, errorParser: ErrorParser,
         outputDir?: string): Promise<string> {
         return new Promise((resolve, reject) => {
-            const java = child_process.spawn("java", parameters, spawnOptions);
+            const java = child_process.spawn(javaRuntime, parameters, spawnOptions);
 
             java.on("error", (error) => {
                 resolve(`Error while running Java: "${error.message}". Is Java installed on you machine?`);

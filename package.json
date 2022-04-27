@@ -164,6 +164,10 @@
                             "default": false,
                             "description": "Also create visitors on code generation"
                         },
+                        "alternativeJava": {
+                            "type": "string",
+                            "description": "Path to a Java runtime binary to be used for parser generation"
+                        },
                         "alternativeJar": {
                             "type": "string",
                             "description": "Path to a Java jar file to be used for parser generation"

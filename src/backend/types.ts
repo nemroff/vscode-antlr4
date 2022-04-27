@@ -218,6 +218,9 @@ export interface IGenerationOptions {
     // Don't generate anything. Just try to load interpreter data and do interpreter setup.
     loadOnly?: boolean;
 
+    // Use this Java runtime binary for work instead of the default one.
+    alternativeJava?: string;
+
     // Use this jar for work instead of the built-in one(s).
     alternativeJar?: string;
 

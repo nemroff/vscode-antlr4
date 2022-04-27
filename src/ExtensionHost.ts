@@ -380,6 +380,7 @@ export class ExtensionHost {
             outputDir,
             listeners: false,
             visitors: false,
+            alternativeJava: workspace.getConfiguration("antlr4.generation").alternativeJava as string,
             alternativeJar: workspace.getConfiguration("antlr4.generation").alternativeJar as string,
             additionalParameters: workspace.getConfiguration("antlr4.generation").additionalParameters as string,
         };
