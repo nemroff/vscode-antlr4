@@ -1088,7 +1088,8 @@ export class SourceContext {
             fileList.push(dependency.fileName);
 
             const actualParameters = [...parameters, dependency.fileName];
-            const result = await this.doGeneration(javaRuntime, actualParameters, spawnOptions, errorParser, options.outputDir);
+            const result = await this.doGeneration(javaRuntime, actualParameters, spawnOptions, errorParser,
+                options.outputDir);
             if (result.length > 0) {
                 message += "\n" + result;
             }
